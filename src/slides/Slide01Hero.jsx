@@ -73,10 +73,18 @@ export default function Slide01Hero() {
         {/* Divider */}
         <motion.div variants={itemVariants} className="my-10 divider-gold max-w-xs mx-auto" />
 
+        {/* Presentador */}
+        <motion.p
+          variants={itemVariants}
+          className="font-jakarta font-small text-white/60 text-md md:text-lg mb-8"
+        >
+          Presentador: <span className="text-white font-semibold">Gregorik Palma</span>
+        </motion.p>
+
         {/* Subtext */}
         <motion.p
           variants={itemVariants}
-          className="font-inter text-white/35 text-base md:text-lg tracking-widest uppercase font-light"
+          className="font-inter text-white/35 text-sm md:text-base tracking-widest uppercase font-light"
         >
           Presiona → para comenzar
         </motion.p>
