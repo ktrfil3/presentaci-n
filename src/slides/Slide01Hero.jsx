@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import backVideo from '../assets/back.mp4'
+import MiipLogo from '../MiipLogo'
 
 const containerVariants = {
   hidden: {},
@@ -51,12 +52,11 @@ export default function Slide01Hero() {
         animate="show"
         className="relative z-10 text-center px-8 max-w-5xl mx-auto"
       >
-        {/* Eyebrow label */}
-        <motion.div variants={itemVariants} className="mb-8">
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-gold-500/25 bg-gold-500/5 text-gold-400 text-xs tracking-[0.2em] uppercase font-inter font-medium">
-            <span className="w-1.5 h-1.5 rounded-full bg-gold-400 animate-pulse_glow" />
-            Pitch Deck — 2026
-          </span>
+        {/* Large MiiP Logo */}
+        <motion.div variants={itemVariants} className="mb-8 flex justify-center">
+          <div style={{ filter: 'drop-shadow(0 0 40px rgba(245,166,35,0.25))' }}>
+            <MiipLogo width={240} />
+          </div>
         </motion.div>
 
         {/* Main headline */}
@@ -73,21 +73,6 @@ export default function Slide01Hero() {
         {/* Divider */}
         <motion.div variants={itemVariants} className="my-10 divider-gold max-w-xs mx-auto" />
 
-        {/* Presentador */}
-        <motion.p
-          variants={itemVariants}
-          className="font-jakarta font-small text-white/60 text-md md:text-lg mb-8"
-        >
-          Presentador: <span className="text-white font-semibold">Gregorik Palma</span>
-        </motion.p>
-
-        {/* Subtext */}
-        <motion.p
-          variants={itemVariants}
-          className="font-inter text-white/35 text-sm md:text-base tracking-widest uppercase font-light"
-        >
-          Presiona → para comenzar
-        </motion.p>
       </motion.div>
 
       {/* Corner decorative elements */}

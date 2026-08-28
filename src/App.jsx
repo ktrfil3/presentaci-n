@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import MiipLogo from './MiipLogo'
+import SoundToggle from './SoundToggle'
 
 import Slide01Hero from './slides/Slide01Hero'
 import Slide02Problem from './slides/Slide02Problem'
@@ -113,9 +114,12 @@ export default function App() {
         />
       </div>
 
-      {/* Slide counter top-right */}
-      <div className="absolute top-4 right-6 z-50 font-inter text-xs tracking-widest text-white/30 font-medium">
-        {String(current + 1).padStart(2, '0')} / {String(TOTAL).padStart(2, '0')}
+      {/* Top-right controls */}
+      <div className="absolute top-4 right-6 z-50 flex items-center gap-6">
+        <SoundToggle />
+        <div className="font-inter text-xs tracking-widest text-white/30 font-medium">
+          {String(current + 1).padStart(2, '0')} / {String(TOTAL).padStart(2, '0')}
+        </div>
       </div>
 
       {/* MiiP logo top-left */}
