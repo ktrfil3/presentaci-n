@@ -62,14 +62,14 @@ export default function Slide09Offer() {
         </motion.div>
 
         {/* Offer cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
           {offers.map((o, i) => {
             const Icon = o.icon
             return (
               <motion.div
                 key={i}
                 variants={itemVariants}
-                className="group relative rounded-2xl p-7 flex flex-col gap-4 cursor-default overflow-hidden transition-all duration-300"
+                className="group relative rounded-2xl p-8 md:p-10 min-h-[320px] flex flex-col gap-4 cursor-default overflow-hidden transition-all duration-300"
                 style={{
                   background: `radial-gradient(ellipse at 20% 20%, ${o.glow} 0%, rgba(255,255,255,0.03) 60%)`,
                   border: `1px solid rgba(255,255,255,0.08)`,

@@ -56,14 +56,14 @@ export default function Slide02Problem() {
         </motion.div>
 
         {/* Cards grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
           {cards.map((card, i) => {
             const Icon = card.icon
             return (
               <motion.div
                 key={i}
                 variants={itemVariants}
-                className="card-glass card-glass-hover rounded-2xl p-7 relative overflow-hidden"
+                className="card-glass card-glass-hover rounded-2xl p-8 md:p-10 min-h-[320px] flex flex-col relative overflow-hidden"
                 style={{ boxShadow: `inset 0 0 60px ${card.accent}` }}
               >
                 {/* Number watermark */}

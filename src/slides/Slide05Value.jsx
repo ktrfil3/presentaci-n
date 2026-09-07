@@ -66,7 +66,7 @@ export default function Slide05Value() {
               <motion.div
                 key={i}
                 variants={itemVariants}
-                className="card-glass card-glass-hover rounded-2xl p-6 flex items-center gap-7 relative overflow-hidden"
+                className="card-glass card-glass-hover rounded-2xl p-5 md:p-6 flex items-center gap-6 relative overflow-hidden"
                 style={{
                   background: `linear-gradient(135deg, ${p.gradientFrom} 0%, rgba(255,255,255,0.02) 100%)`,
                   borderColor: 'rgba(255,255,255,0.07)',

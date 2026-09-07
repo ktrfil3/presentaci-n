@@ -11,10 +11,11 @@ import Slide04Brand from './slides/Slide04Brand'
 import Slide05Value from './slides/Slide05Value'
 import Slide06App from './slides/Slide06App'
 import Slide07Dashboard from './slides/Slide07Dashboard'
-import Slide08Logistics from './slides/Slide08Logistics'
-import Slide09Offer from './slides/Slide09Offer'
-import Slide10Roadmap from './slides/Slide10Roadmap'
-import Slide11CTA from './slides/Slide11CTA'
+import Slide08LiveMockup from './slides/Slide08LiveMockup'
+import Slide09Logistics from './slides/Slide08Logistics'
+import Slide10Offer from './slides/Slide09Offer'
+import Slide11Roadmap from './slides/Slide10Roadmap'
+import Slide12CTA from './slides/Slide11CTA'
 
 const slides = [
   Slide01Hero,
@@ -24,10 +25,11 @@ const slides = [
   Slide05Value,
   Slide06App,
   Slide07Dashboard,
-  Slide08Logistics,
-  Slide09Offer,
-  Slide10Roadmap,
-  Slide11CTA,
+  Slide08LiveMockup,
+  Slide09Logistics,
+  Slide10Offer,
+  Slide11Roadmap,
+  Slide12CTA,
 ]
 
 const TOTAL = slides.length
@@ -123,8 +125,8 @@ export default function App() {
       </div>
 
       {/* MiiP logo top-left */}
-      {current !== 3 && current !== 10 && (
-        <div className="absolute top-2 left-5 z-50 opacity-80">
+      {current !== 3 && current !== 11 && (
+        <div className="absolute top-4 left-6 z-50 opacity-80 h-10 flex items-center">
           <MiipLogo width={72} />
         </div>
       )}
