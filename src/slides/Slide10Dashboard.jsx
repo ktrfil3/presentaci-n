@@ -1,6 +1,8 @@
+import { useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { BarChart2, ListOrdered, LayoutDashboard, Monitor } from 'lucide-react'
+import { Store, LayoutDashboard, Truck, LineChart, Monitor } from 'lucide-react'
 import aliadosVideo from '../assets/aliados2.mp4'
+import { useLiveStream } from '../LiveStreamContext'
 
 const containerVariants = {
   hidden: {},
@@ -13,9 +15,10 @@ const itemVariants = {
 }
 
 const features = [
-  { icon: ListOrdered, text: 'Gestión de Catálogo: Actualiza precios y disponibilidad al instante.' },
-  { icon: LayoutDashboard, text: 'Monitor de Pedidos: Recepción y despacho sincronizado.' },
-  { icon: BarChart2, text: 'Analítica Avanzada: Conoce tu volumen de ventas y horas pico.' },
+  { icon: Store, text: 'Gestión Multi-Sucursal: Menús y stock centralizados por sede.' },
+  { icon: LayoutDashboard, text: 'Flujo Operativo: Pedidos codificados por color y montos claros.' },
+  { icon: Truck, text: 'Control Logístico: Liberación de orden y reasignación de Miiper.' },
+  { icon: LineChart, text: 'Finanzas en Vivo: Dispersión inmediata + Dashboard e Informes Semanales.' },
 ]
 
 // ── iPhone mockup SVG frame (reutilizable) ──────────────────────────────────
@@ -96,7 +99,17 @@ function IPhoneFrame({ children, maskId, gradientId, dynamicIsland = false }) {
   )
 }
 
-export default function Slide09Dashboard() {
+export default function Slide10Dashboard() {
+  const streamVideoRef = useRef(null)
+  const { stream, isStreaming, error, startScreenShare, stopScreenShare } = useLiveStream()
+
+  useEffect(() => {
+    if (streamVideoRef.current && stream) {
+      streamVideoRef.current.srcObject = stream
+      streamVideoRef.current.play().catch(err => console.error("Auto-play prevented", err))
+    }
+  }, [stream])
+
   return (
     <div className="w-full h-full flex flex-col justify-center px-12 py-16 max-w-7xl mx-auto">
       <motion.div
@@ -109,10 +122,10 @@ export default function Slide09Dashboard() {
         <div className="flex flex-col gap-6">
           <motion.div variants={itemVariants}>
             <p className="font-inter text-gold-500 text-xs tracking-[0.25em] uppercase mb-3 font-medium">
-              09 — Herramienta
+              10 — Herramienta
             </p>
             <h2 className="font-jakarta font-black text-white leading-tight" style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}>
-              Panel del Aliado
+              Panel del Aliado Miip
             </h2>
             <div className="mt-4 divider-gold w-24" />
           </motion.div>
@@ -164,24 +177,83 @@ export default function Slide09Dashboard() {
           variants={itemVariants}
           className="flex items-center justify-center h-full"
         >
-          <div style={{ position: 'relative', height: '520px', width: '260px' }}>
-            <IPhoneFrame maskId="mask09vid" gradientId="grad09vid" dynamicIsland>
-              <video
-                src={aliadosVideo}
-                autoPlay
-                loop
-                muted
-                playsInline
+          <div className="flex flex-col items-center gap-5">
+            <div style={{ position: 'relative', height: '520px', width: '260px' }}>
+              <IPhoneFrame maskId="mask09vid" gradientId="grad09vid" dynamicIsland>
+                {!isStreaming && (
+                  <video
+                    src={aliadosVideo}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    style={{
+                      position: 'absolute',
+                      top: '-0.1%',
+                      left: 0,
+                      width: '100%',
+                      height: '103%',
+                      objectFit: 'cover',
+                    }}
+                  />
+                )}
+                
+                <video
+                  ref={streamVideoRef}
+                  autoPlay
+                  playsInline
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    width: '100%',
+                    height: '105%',
+                    top: '-2.4%',
+                    objectFit: 'cover',
+                    display: isStreaming ? 'block' : 'none',
+                  }}
+                />
+              </IPhoneFrame>
+            </div>
+
+            {/* Botones de conexión */}
+            {!isStreaming ? (
+              <motion.button
+                onClick={startScreenShare}
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.96 }}
+                className="font-inter font-semibold text-sm px-6 py-3 rounded-xl transition-all duration-200"
                 style={{
-                  position: 'absolute',
-                  top: '-0.1%',
-                  left: 0,
-                  width: '100%',
-                  height: '103%',
-                  objectFit: 'cover',
+                  background: 'linear-gradient(135deg, #C9A84C, #F5D98B)',
+                  color: '#1a1208',
+                  boxShadow: '0 0 24px rgba(201,168,76,0.35)',
                 }}
-              />
-            </IPhoneFrame>
+              >
+                Conectar iPhone
+              </motion.button>
+            ) : (
+              <motion.button
+                onClick={() => {
+                  stopScreenShare()
+                  if (streamVideoRef.current) streamVideoRef.current.srcObject = null
+                }}
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.96 }}
+                className="font-inter font-semibold text-sm px-6 py-3 rounded-xl transition-all duration-200"
+                style={{
+                  background: 'rgba(255,255,255,0.07)',
+                  color: 'rgba(255,255,255,0.5)',
+                  border: '1px solid rgba(255,255,255,0.1)',
+                }}
+              >
+                Detener captura
+              </motion.button>
+            )}
+
+            {error && (
+              <p className="font-inter text-xs" style={{ color: 'rgba(255,100,100,0.7)' }}>
+                {error}
+              </p>
+            )}
           </div>
         </motion.div>
       </motion.div>

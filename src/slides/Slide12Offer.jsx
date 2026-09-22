@@ -41,7 +41,7 @@ const offers = [
   },
 ]
 
-export default function Slide14Offer() {
+export default function Slide12Offer() {
   return (
     <div className="w-full h-full flex flex-col justify-center px-12 py-16 max-w-7xl mx-auto">
       <motion.div
@@ -53,7 +53,7 @@ export default function Slide14Offer() {
         {/* Header */}
         <motion.div variants={itemVariants}>
           <p className="font-inter text-gold-500 text-xs tracking-[0.25em] uppercase mb-3 font-medium">
-            14 — Oferta
+            12 — Oferta
           </p>
           <h2 className="font-jakarta font-black text-white leading-tight" style={{ fontSize: 'clamp(2rem, 4.5vw, 3.8rem)' }}>
             Programa Aliados Fundadores

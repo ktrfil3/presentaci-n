@@ -38,7 +38,7 @@ const paths = [
   }
 ]
 
-export default function Slide11Finance() {
+export default function Slide09Finance() {
   return (
     <div className="relative w-full h-full flex flex-col items-center justify-center overflow-hidden">
       {/* Background */}
@@ -52,7 +52,7 @@ export default function Slide11Finance() {
       >
         <motion.div variants={itemVariants} className="text-center mb-16">
           <p className="font-inter text-gold-500 text-sm tracking-[0.25em] uppercase mb-4 font-medium flex items-center justify-center gap-2">
-            11 — Finanzas
+            09 — Finanzas
           </p>
           <h2 className="font-jakarta font-bold text-4xl md:text-5xl text-white tracking-tight">
             Validación Inteligente | Conciliación en Tiempo Real

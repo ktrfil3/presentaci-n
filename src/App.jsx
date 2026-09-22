@@ -4,6 +4,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 import MiipLogo from './MiipLogo'
 import SoundToggle from './SoundToggle'
 
+import Slide00Blank from './slides/Slide00Blank'
 import Slide01Hero from './slides/Slide01Hero'
 import Slide02Problem from './slides/Slide02Problem'
 import Slide03Impact from './slides/Slide03Impact'
@@ -12,16 +13,15 @@ import Slide05Fusion from './slides/Slide05Fusion'
 import Slide06Brand from './slides/Slide06Brand'
 import Slide07Value from './slides/Slide07Value'
 import Slide08App from './slides/Slide08App'
-import Slide09Dashboard from './slides/Slide09Dashboard'
-import Slide10LiveMockup from './slides/Slide10LiveMockup'
-import Slide11Finance from './slides/Slide11Finance'
-import Slide12Restaurant from './slides/Slide12Restaurant'
-import Slide13Logistics from './slides/Slide13Logistics'
-import Slide14Offer from './slides/Slide14Offer'
-import Slide15Roadmap from './slides/Slide15Roadmap'
-import Slide16CTA from './slides/Slide16CTA'
+import Slide09Finance from './slides/Slide09Finance'
+import Slide10Dashboard from './slides/Slide10Dashboard'
+import Slide11Logistics from './slides/Slide11Logistics'
+import Slide12Offer from './slides/Slide12Offer'
+import Slide13Roadmap from './slides/Slide13Roadmap'
+import Slide14CTA from './slides/Slide14CTA'
 
 const slides = [
+  Slide00Blank,
   Slide01Hero,
   Slide02Problem,
   Slide03Impact,
@@ -30,14 +30,12 @@ const slides = [
   Slide06Brand,
   Slide07Value,
   Slide08App,
-  Slide09Dashboard,
-  Slide10LiveMockup,
-  Slide11Finance,
-  Slide12Restaurant,
-  Slide13Logistics,
-  Slide14Offer,
-  Slide15Roadmap,
-  Slide16CTA,
+  Slide09Finance,
+  Slide10Dashboard,
+  Slide11Logistics,
+  Slide12Offer,
+  Slide13Roadmap,
+  Slide14CTA,
 ]
 
 const TOTAL = slides.length
@@ -93,7 +91,7 @@ export default function App() {
     }),
   }
 
-  const progress = ((current + 1) / TOTAL) * 100
+  const progress = current === 0 ? 0 : (current / (TOTAL - 1)) * 100
 
   return (
     <div className="relative w-full h-full bg-zinc-950 overflow-hidden select-none">
@@ -125,15 +123,15 @@ export default function App() {
       </div>
 
       {/* Top-right controls */}
-      <div className="absolute top-4 right-6 z-50 flex items-center gap-6">
+      <div className={`absolute top-4 right-6 z-50 flex items-center gap-6 transition-opacity duration-700 ${current === 0 ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
         <SoundToggle />
         <div className="font-inter text-xs tracking-widest text-white/30 font-medium">
-          {String(current + 1).padStart(2, '0')} / {String(TOTAL).padStart(2, '0')}
+          {String(current).padStart(2, '0')} / {String(TOTAL - 1).padStart(2, '0')}
         </div>
       </div>
 
       {/* MiiP logo top-left */}
-      {current !== 3 && current !== 11 && (
+      {current !== 0 && current !== 4 && current !== 11 && (
         <div className="absolute top-4 left-6 z-50 opacity-80 h-10 flex items-center">
           <MiipLogo width={72} />
         </div>

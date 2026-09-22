@@ -1,6 +1,8 @@
+import { useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { CheckCircle, Smartphone } from 'lucide-react'
 import appVideo from '../assets/app2.mp4'
+import { useLiveStream } from '../LiveStreamContext'
 
 const containerVariants = {
   hidden: {},
@@ -97,6 +99,16 @@ function IPhoneFrame({ children, maskId, gradientId, dynamicIsland = false }) {
 
 // ── Slide 06 ────────────────────────────────────────────────────────────────
 export default function Slide08App() {
+  const streamVideoRef = useRef(null)
+  const { stream, isStreaming, error, startScreenShare, stopScreenShare } = useLiveStream()
+
+  useEffect(() => {
+    if (streamVideoRef.current && stream) {
+      streamVideoRef.current.srcObject = stream
+      streamVideoRef.current.play().catch(err => console.error("Auto-play prevented", err))
+    }
+  }, [stream])
+
   return (
     <div className="w-full h-full flex flex-col justify-center px-12 py-16 max-w-7xl mx-auto">
       <motion.div
@@ -161,24 +173,83 @@ export default function Slide08App() {
           variants={itemVariants}
           className="flex items-center justify-center h-full"
         >
-          <div style={{ position: 'relative', height: '520px', width: '260px' }}>
-            <IPhoneFrame maskId="mask06vid" gradientId="grad06vid" dynamicIsland>
-              <video
-                src={appVideo}
-                autoPlay
-                loop
-                muted
-                playsInline
+          <div className="flex flex-col items-center gap-5">
+            <div style={{ position: 'relative', height: '520px', width: '260px' }}>
+              <IPhoneFrame maskId="mask06vid" gradientId="grad06vid" dynamicIsland>
+                {!isStreaming && (
+                  <video
+                    src={appVideo}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    style={{
+                      position: 'absolute',
+                      top: '-0.1%',
+                      left: 0,
+                      width: '100%',
+                      height: '103%',
+                      objectFit: 'cover',
+                    }}
+                  />
+                )}
+                
+                <video
+                  ref={streamVideoRef}
+                  autoPlay
+                  playsInline
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    width: '100%',
+                    height: '105%',
+                    top: '-2.4%',
+                    objectFit: 'cover',
+                    display: isStreaming ? 'block' : 'none',
+                  }}
+                />
+              </IPhoneFrame>
+            </div>
+
+            {/* Botones de conexión */}
+            {!isStreaming ? (
+              <motion.button
+                onClick={startScreenShare}
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.96 }}
+                className="font-inter font-semibold text-sm px-6 py-3 rounded-xl transition-all duration-200"
                 style={{
-                  position: 'absolute',
-                  top: '-0.1%',
-                  left: 0,
-                  width: '100%',
-                  height: '103%',
-                  objectFit: 'cover',
+                  background: 'linear-gradient(135deg, #C9A84C, #F5D98B)',
+                  color: '#1a1208',
+                  boxShadow: '0 0 24px rgba(201,168,76,0.35)',
                 }}
-              />
-            </IPhoneFrame>
+              >
+                Conectar iPhone
+              </motion.button>
+            ) : (
+              <motion.button
+                onClick={() => {
+                  stopScreenShare()
+                  if (streamVideoRef.current) streamVideoRef.current.srcObject = null
+                }}
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.96 }}
+                className="font-inter font-semibold text-sm px-6 py-3 rounded-xl transition-all duration-200"
+                style={{
+                  background: 'rgba(255,255,255,0.07)',
+                  color: 'rgba(255,255,255,0.5)',
+                  border: '1px solid rgba(255,255,255,0.1)',
+                }}
+              >
+                Detener captura
+              </motion.button>
+            )}
+
+            {error && (
+              <p className="font-inter text-xs" style={{ color: 'rgba(255,100,100,0.7)' }}>
+                {error}
+              </p>
+            )}
           </div>
         </motion.div>
       </motion.div>

@@ -37,7 +37,7 @@ const features = [
   { icon: Zap, title: 'Cobro Instantáneo', desc: 'Liquidación automática por orden entregada.' },
 ]
 
-export default function Slide13Logistics() {
+export default function Slide11Logistics() {
   return (
     <div className="w-full h-full flex flex-col justify-center px-12 py-16 max-w-7xl mx-auto">
       <motion.div
@@ -217,11 +217,11 @@ export default function Slide13Logistics() {
         <div className="flex flex-col gap-6">
           <motion.div variants={itemVariants}>
             <p className="font-inter text-gold-500 text-xs tracking-[0.25em] uppercase mb-3 font-medium">
-              13 — Logística
+              11 — Logística
             </p>
             <h2 className="font-jakarta font-black text-white leading-tight" style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}>
               Red Miiper |{' '}
-              <span className="gradient-gold-text">100% Transparencia</span>
+              <span className="gradient-gold-text">Deliverys</span>
             </h2>
             <div className="mt-4 divider-gold w-24" />
           </motion.div>
