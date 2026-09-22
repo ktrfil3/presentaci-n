@@ -16,11 +16,10 @@ import Slide09Dashboard from './slides/Slide09Dashboard'
 import Slide10LiveMockup from './slides/Slide10LiveMockup'
 import Slide11Finance from './slides/Slide11Finance'
 import Slide12Restaurant from './slides/Slide12Restaurant'
-import Slide13Miipers from './slides/Slide13Miipers'
-import Slide14Logistics from './slides/Slide14Logistics'
-import Slide15Offer from './slides/Slide15Offer'
-import Slide16Roadmap from './slides/Slide16Roadmap'
-import Slide17CTA from './slides/Slide17CTA'
+import Slide13Logistics from './slides/Slide13Logistics'
+import Slide14Offer from './slides/Slide14Offer'
+import Slide15Roadmap from './slides/Slide15Roadmap'
+import Slide16CTA from './slides/Slide16CTA'
 
 const slides = [
   Slide01Hero,
@@ -35,11 +34,10 @@ const slides = [
   Slide10LiveMockup,
   Slide11Finance,
   Slide12Restaurant,
-  Slide13Miipers,
-  Slide14Logistics,
-  Slide15Offer,
-  Slide16Roadmap,
-  Slide17CTA,
+  Slide13Logistics,
+  Slide14Offer,
+  Slide15Roadmap,
+  Slide16CTA,
 ]
 
 const TOTAL = slides.length

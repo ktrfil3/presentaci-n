@@ -18,6 +18,84 @@ const features = [
   { icon: BarChart2, text: 'Analítica Avanzada: Conoce tu volumen de ventas y horas pico.' },
 ]
 
+// ── iPhone mockup SVG frame (reutilizable) ──────────────────────────────────
+function IPhoneFrame({ children, maskId, gradientId, dynamicIsland = false }) {
+  return (
+    <div
+      style={{
+        position: 'relative',
+        width: '260px',
+        height: '520px',
+        overflow: 'hidden',
+        borderRadius: '44px',
+        boxShadow: '0 0 60px rgba(201,168,76,0.18)',
+      }}
+    >
+      {/* Pantalla — coordenadas exactas del cutout SVG */}
+      <div
+        style={{
+          position: 'absolute',
+          top: '4px',
+          left: '4px',
+          width: '252px',
+          height: '512px',
+          borderRadius: '40px',
+          overflow: 'hidden',
+          background: '#000',
+          zIndex: 1,
+        }}
+      >
+        {children}
+      </div>
+
+      {/* Bisel SVG */}
+      <svg
+        viewBox="0 0 260 520"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        style={{
+          position: 'absolute',
+          inset: 0,
+          width: '100%',
+          height: '100%',
+          zIndex: 10,
+          pointerEvents: 'none',
+        }}
+      >
+        <defs>
+          <mask id={maskId}>
+            <rect x="0" y="0" width="260" height="520" fill="white" />
+            <rect x="4" y="4" width="252" height="512" rx="40" fill="black" />
+          </mask>
+          <linearGradient id={gradientId} x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stopColor="white" stopOpacity="0.12" />
+            <stop offset="60%" stopColor="white" stopOpacity="0" />
+          </linearGradient>
+        </defs>
+        <rect x="0" y="0" width="260" height="520" rx="44"
+          fill="rgba(28,26,32,0.95)" mask={`url(#${maskId})`} />
+        <rect x="0.5" y="0.5" width="259" height="519" rx="43.5"
+          stroke="rgba(255,255,255,0.22)" strokeWidth="1" fill="none" />
+        <rect x="4" y="4" width="252" height="512" rx="40"
+          stroke="rgba(255,255,255,0.06)" strokeWidth="1" fill="none" />
+        <rect x="0" y="0" width="260" height="520" rx="44"
+          fill={`url(#${gradientId})`} mask={`url(#${maskId})`} />
+        {/* Dynamic Island — opcional */}
+        {dynamicIsland && (
+          <rect x="96" y="14" width="68" height="20" rx="10" fill="rgba(0,0,0,0.98)" />
+        )}
+        {/* Power */}
+        <rect x="259" y="130" width="3" height="60" rx="1.5" fill="rgba(255,255,255,0.15)" />
+        {/* Volumen */}
+        <rect x="-2" y="118" width="3" height="38" rx="1.5" fill="rgba(255,255,255,0.1)" />
+        <rect x="-2" y="166" width="3" height="38" rx="1.5" fill="rgba(255,255,255,0.1)" />
+        {/* Mute */}
+        <rect x="-2" y="90" width="3" height="22" rx="1.5" fill="rgba(255,255,255,0.08)" />
+      </svg>
+    </div>
+  )
+}
+
 export default function Slide09Dashboard() {
   return (
     <div className="w-full h-full flex flex-col justify-center px-12 py-16 max-w-7xl mx-auto">
@@ -86,32 +164,8 @@ export default function Slide09Dashboard() {
           variants={itemVariants}
           className="flex items-center justify-center h-full"
         >
-          {/* Contenedor iPhone */}
-          <div
-            style={{
-              position: 'relative',
-              width: '260px',
-              height: '520px',
-              overflow: 'hidden',
-              borderRadius: '44px',
-              /* Halo dorado sutil */
-              boxShadow: '0 0 60px rgba(201,168,76,0.18)',
-            }}
-          >
-            {/* Pantalla — coordenadas exactas del recorte SVG (x=11,y=11,w=238,h=498,rx=36) */}
-            <div
-              style={{
-                position: 'absolute',
-                top: '11px',
-                left: '11px',
-                width: '238px',
-                height: '498px',
-                borderRadius: '36px',
-                overflow: 'hidden',
-                background: '#000',
-                zIndex: 1,
-              }}
-            >
+          <div style={{ position: 'relative', height: '520px', width: '260px' }}>
+            <IPhoneFrame maskId="mask09vid" gradientId="grad09vid" dynamicIsland>
               <video
                 src={aliadosVideo}
                 autoPlay
@@ -120,74 +174,14 @@ export default function Slide09Dashboard() {
                 playsInline
                 style={{
                   position: 'absolute',
-                  inset: 0,
-                  width: '100%',
                   top: '-0.1%',
+                  left: 0,
+                  width: '100%',
                   height: '103%',
                   objectFit: 'cover',
                 }}
               />
-            </div>
-
-            {/* Marco del iPhone — bisel con cutout transparente */}
-            <svg
-              viewBox="0 0 260 520"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              style={{
-                position: 'absolute',
-                inset: 0,
-                width: '100%',
-                height: '100%',
-                zIndex: 10,
-                pointerEvents: 'none',
-              }}
-            >
-              <defs>
-                <mask id="frameMask07">
-                  <rect x="0" y="0" width="260" height="520" fill="white" />
-                  {/* Recorte de pantalla = zona transparente */}
-                  <rect x="11" y="11" width="238" height="498" rx="36" fill="black" />
-                </mask>
-                <linearGradient id="shineG07" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stopColor="white" stopOpacity="0.12" />
-                  <stop offset="60%" stopColor="white" stopOpacity="0" />
-                </linearGradient>
-              </defs>
-
-              {/* Bisel: pintado solo en el borde, pantalla recortada */}
-              <rect
-                x="0" y="0" width="260" height="520" rx="44"
-                fill="rgba(28,26,32,0.95)"
-                mask="url(#frameMask07)"
-              />
-              {/* Borde exterior */}
-              <rect
-                x="0.5" y="0.5" width="259" height="519" rx="43.5"
-                stroke="rgba(255,255,255,0.22)" strokeWidth="1"
-                fill="none"
-              />
-              {/* Borde interior pantalla */}
-              <rect
-                x="11" y="11" width="238" height="498" rx="36"
-                stroke="rgba(255,255,255,0.06)" strokeWidth="1"
-                fill="none"
-              />
-              {/* Brillo sobre el bisel */}
-              <rect
-                x="0" y="0" width="260" height="520" rx="44"
-                fill="url(#shineG07)"
-                mask="url(#frameMask07)"
-              />
-              
-              {/* Botón lateral derecho (power) */}
-              <rect x="259" y="130" width="3" height="60" rx="1.5" fill="rgba(255,255,255,0.15)" />
-              {/* Botones laterales izquierdo (volumen) */}
-              <rect x="-2" y="118" width="3" height="38" rx="1.5" fill="rgba(255,255,255,0.1)" />
-              <rect x="-2" y="166" width="3" height="38" rx="1.5" fill="rgba(255,255,255,0.1)" />
-              {/* Mute switch */}
-              <rect x="-2" y="90" width="3" height="22" rx="1.5" fill="rgba(255,255,255,0.08)" />
-            </svg>
+            </IPhoneFrame>
           </div>
         </motion.div>
       </motion.div>
