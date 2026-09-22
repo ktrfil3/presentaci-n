@@ -18,7 +18,7 @@ const features = [
   { icon: BarChart2, text: 'Analítica Avanzada: Conoce tu volumen de ventas y horas pico.' },
 ]
 
-export default function Slide07Dashboard() {
+export default function Slide09Dashboard() {
   return (
     <div className="w-full h-full flex flex-col justify-center px-12 py-16 max-w-7xl mx-auto">
       <motion.div
@@ -31,7 +31,7 @@ export default function Slide07Dashboard() {
         <div className="flex flex-col gap-6">
           <motion.div variants={itemVariants}>
             <p className="font-inter text-gold-500 text-xs tracking-[0.25em] uppercase mb-3 font-medium">
-              07 — Herramienta
+              09 — Herramienta
             </p>
             <h2 className="font-jakarta font-black text-white leading-tight" style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}>
               Panel del Aliado

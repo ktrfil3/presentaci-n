@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { QrCode, ArrowRight } from 'lucide-react'
 import MiipLogo from '../MiipLogo'
-import qrImg from '../assets/qr.svg'
+import qrImg from '../assets/qr.jpeg'
 
 const containerVariants = {
   hidden: {},
@@ -13,7 +13,7 @@ const itemVariants = {
   show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.25, 0.1, 0.25, 1] } },
 }
 
-export default function Slide11CTA() {
+export default function Slide17CTA() {
   return (
     <div className="w-full h-full flex flex-col justify-center px-12 py-16 max-w-7xl mx-auto">
       {/* Background glow */}
@@ -34,7 +34,7 @@ export default function Slide11CTA() {
         <div className="flex flex-col justify-center gap-6">
           <motion.div variants={itemVariants}>
             <p className="font-inter text-gold-500 text-xs tracking-[0.25em] uppercase mb-6 font-medium">
-              11 — Únete
+              17 — Únete
             </p>
 
             {/* Logo con glow */}

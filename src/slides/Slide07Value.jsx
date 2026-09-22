@@ -38,7 +38,7 @@ const pillars = [
   },
 ]
 
-export default function Slide05Value() {
+export default function Slide07Value() {
   return (
     <div className="w-full h-full flex flex-col justify-center px-12 py-16 max-w-7xl mx-auto">
       <motion.div
@@ -50,7 +50,7 @@ export default function Slide05Value() {
         {/* Header */}
         <motion.div variants={itemVariants}>
           <p className="font-inter text-gold-500 text-xs tracking-[0.25em] uppercase mb-3 font-medium">
-            05 — Propuesta
+            07 — Propuesta
           </p>
           <h2 className="font-jakarta font-black text-white leading-tight" style={{ fontSize: 'clamp(2rem, 4.5vw, 3.8rem)' }}>
             Nuestros Pilares

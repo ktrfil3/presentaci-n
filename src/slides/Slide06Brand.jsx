@@ -158,7 +158,7 @@ function drawVignette(ctx, cx, cy, W, H, strength) {
   ctx.restore()
 }
 
-export default function Slide04Brand() {
+export default function Slide06Brand() {
   const canvasRef   = useRef(null)
   const offRef      = useRef(null)
   const starsRef    = useRef([])

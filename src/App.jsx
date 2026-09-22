@@ -7,29 +7,39 @@ import SoundToggle from './SoundToggle'
 import Slide01Hero from './slides/Slide01Hero'
 import Slide02Problem from './slides/Slide02Problem'
 import Slide03Impact from './slides/Slide03Impact'
-import Slide04Brand from './slides/Slide04Brand'
-import Slide05Value from './slides/Slide05Value'
-import Slide06App from './slides/Slide06App'
-import Slide07Dashboard from './slides/Slide07Dashboard'
-import Slide08LiveMockup from './slides/Slide08LiveMockup'
-import Slide09Logistics from './slides/Slide08Logistics'
-import Slide10Offer from './slides/Slide09Offer'
-import Slide11Roadmap from './slides/Slide10Roadmap'
-import Slide12CTA from './slides/Slide11CTA'
+import Slide04Products from './slides/Slide04Products'
+import Slide05Fusion from './slides/Slide05Fusion'
+import Slide06Brand from './slides/Slide06Brand'
+import Slide07Value from './slides/Slide07Value'
+import Slide08App from './slides/Slide08App'
+import Slide09Dashboard from './slides/Slide09Dashboard'
+import Slide10LiveMockup from './slides/Slide10LiveMockup'
+import Slide11Finance from './slides/Slide11Finance'
+import Slide12Restaurant from './slides/Slide12Restaurant'
+import Slide13Miipers from './slides/Slide13Miipers'
+import Slide14Logistics from './slides/Slide14Logistics'
+import Slide15Offer from './slides/Slide15Offer'
+import Slide16Roadmap from './slides/Slide16Roadmap'
+import Slide17CTA from './slides/Slide17CTA'
 
 const slides = [
   Slide01Hero,
   Slide02Problem,
   Slide03Impact,
-  Slide04Brand,
-  Slide05Value,
-  Slide06App,
-  Slide07Dashboard,
-  Slide08LiveMockup,
-  Slide09Logistics,
-  Slide10Offer,
-  Slide11Roadmap,
-  Slide12CTA,
+  Slide04Products,
+  Slide05Fusion,
+  Slide06Brand,
+  Slide07Value,
+  Slide08App,
+  Slide09Dashboard,
+  Slide10LiveMockup,
+  Slide11Finance,
+  Slide12Restaurant,
+  Slide13Miipers,
+  Slide14Logistics,
+  Slide15Offer,
+  Slide16Roadmap,
+  Slide17CTA,
 ]
 
 const TOTAL = slides.length

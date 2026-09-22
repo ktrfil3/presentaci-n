@@ -1,6 +1,7 @@
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Smartphone, Cast, Code2, Layers } from 'lucide-react'
+import { useLiveStream } from '../LiveStreamContext'
 
 const containerVariants = {
   hidden: {},
@@ -30,38 +31,17 @@ const steps = [
   },
 ]
 
-export default function Slide08LiveMockup() {
+export default function Slide10LiveMockup() {
   const videoRef = useRef(null)
-  const [stream, setStream] = useState(null)
-  const [isStreaming, setIsStreaming] = useState(false)
-  const [error, setError] = useState(null)
+  const { stream, isStreaming, error, startScreenShare, stopScreenShare } = useLiveStream()
 
   // Aplicar el stream al elemento <video> una vez que esté montado
   useEffect(() => {
     if (videoRef.current && stream) {
       videoRef.current.srcObject = stream
-      setIsStreaming(true)
+      videoRef.current.play().catch(err => console.error("Auto-play prevented", err))
     }
   }, [stream])
-
-  const startScreenShare = async () => {
-    setError(null)
-    try {
-      const s = await navigator.mediaDevices.getDisplayMedia({
-        video: { cursor: 'never' },
-        audio: false,
-      })
-      // Detener cuando el usuario cierra la captura desde el sistema
-      s.getVideoTracks()[0].addEventListener('ended', () => {
-        setStream(null)
-        setIsStreaming(false)
-      })
-      setStream(s)
-    } catch (err) {
-      setError('Captura cancelada o no disponible.')
-      console.error('Error al capturar la pantalla:', err)
-    }
-  }
 
   return (
     <div className="w-full h-full flex flex-col justify-center px-12 py-16 max-w-7xl mx-auto">
@@ -75,7 +55,7 @@ export default function Slide08LiveMockup() {
         <div className="flex flex-col gap-6">
           <motion.div variants={itemVariants}>
             <p className="font-inter text-gold-500 text-xs tracking-[0.25em] uppercase mb-3 font-medium">
-              08 — Técnica
+              10 — Técnica
             </p>
             <h2
               className="font-jakarta font-black text-white leading-tight"
@@ -155,15 +135,15 @@ export default function Slide08LiveMockup() {
                 borderRadius: '44px',
               }}
             >
-              {/* Pantalla — posición y borderRadius exactos al recorte del SVG (x=11,y=11,w=238,h=498,rx=36) */}
+              {/* Pantalla — posición y borderRadius exactos al recorte del SVG (x=4,y=4,w=252,h=512,rx=40) */}
               <div
                 style={{
                   position: 'absolute',
-                  top: '11px',
-                  left: '11px',
-                  width: '238px',
-                  height: '498px',
-                  borderRadius: '36px',
+                  top: '4px',
+                  left: '4px',
+                  width: '252px',
+                  height: '512px',
+                  borderRadius: '40px',
                   overflow: 'hidden',
                   background: 'rgba(0,0,0,0.85)',
                   zIndex: 1,
@@ -239,7 +219,7 @@ export default function Slide08LiveMockup() {
                     {/* Todo blanco = visible */}
                     <rect x="0" y="0" width="260" height="520" fill="white" />
                     {/* Zona de pantalla negra = transparente (el cutout) */}
-                    <rect x="11" y="11" width="238" height="498" rx="36" fill="black" />
+                    <rect x="4" y="4" width="252" height="512" rx="40" fill="black" />
                   </mask>
                   <linearGradient id="shineG" x1="0" y1="0" x2="1" y2="1">
                     <stop offset="0%" stopColor="white" stopOpacity="0.12" />
@@ -261,7 +241,7 @@ export default function Slide08LiveMockup() {
                 />
                 {/* Borde interior de pantalla */}
                 <rect
-                  x="11" y="11" width="238" height="498" rx="36"
+                  x="4" y="4" width="252" height="512" rx="40"
                   stroke="rgba(255,255,255,0.06)" strokeWidth="1"
                   fill="none"
                 />
@@ -300,12 +280,8 @@ export default function Slide08LiveMockup() {
             ) : (
               <motion.button
                 onClick={() => {
-                  if (stream) {
-                    stream.getTracks().forEach(t => t.stop())
-                    setStream(null)
-                  }
+                  stopScreenShare()
                   if (videoRef.current) videoRef.current.srcObject = null
-                  setIsStreaming(false)
                 }}
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.96 }}

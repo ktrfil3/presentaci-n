@@ -68,7 +68,7 @@ function AnimatedLine({ delay, opacity = 0.75 }) {
   )
 }
 
-export default function Slide10Roadmap() {
+export default function Slide16Roadmap() {
   return (
     <div className="w-full h-full flex flex-col justify-center px-12 py-14 max-w-7xl mx-auto">
       <motion.div
@@ -80,7 +80,7 @@ export default function Slide10Roadmap() {
         {/* ── Header ── */}
         <motion.div variants={itemVariants}>
           <p className="font-inter text-gold-500 text-xs tracking-[0.25em] uppercase mb-3 font-medium">
-            10 — Roadmap
+            16 — Roadmap
           </p>
           <h2
             className="font-jakarta font-black text-white leading-tight"
