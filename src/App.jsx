@@ -4,7 +4,6 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 import MiipLogo from './MiipLogo'
 
 import Slide00Blank from './slides/Slide00Blank'
-import Slide01Hero from './slides/Slide01Hero'
 import Slide02Problem from './slides/Slide02Problem'
 import Slide03Impact from './slides/Slide03Impact'
 import Slide04Products from './slides/Slide04Products'
@@ -21,7 +20,6 @@ import Slide14CTA from './slides/Slide14CTA'
 
 const slides = [
   Slide00Blank,
-  Slide01Hero,
   Slide02Problem,
   Slide03Impact,
   Slide04Products,

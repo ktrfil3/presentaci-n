@@ -15,7 +15,7 @@ export default function Slide06Brand() {
     <div className="relative w-full h-full overflow-hidden bg-[#030306] flex items-center justify-center">
       <video
         ref={videoRef}
-        src="/MIIP MIIP HORIZONTAL.mp4"
+        src="/MIIP MIIP HORIZONTAL.webm"
         className="w-full h-full object-cover"
         playsInline
       />
