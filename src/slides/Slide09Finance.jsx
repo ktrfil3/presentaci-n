@@ -51,9 +51,6 @@ export default function Slide09Finance() {
         className="relative z-10 w-full max-w-6xl px-8 flex flex-col items-center"
       >
         <motion.div variants={itemVariants} className="text-center mb-16">
-          <p className="font-inter text-gold-500 text-sm tracking-[0.25em] uppercase mb-4 font-medium flex items-center justify-center gap-2">
-            09 — Finanzas
-          </p>
           <h2 className="font-jakarta font-bold text-4xl md:text-5xl text-white tracking-tight">
             Validación Inteligente | Conciliación en Tiempo Real
           </h2>

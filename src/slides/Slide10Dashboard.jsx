@@ -101,7 +101,7 @@ function IPhoneFrame({ children, maskId, gradientId, dynamicIsland = false }) {
 
 export default function Slide10Dashboard() {
   const streamVideoRef = useRef(null)
-  const { stream, isStreaming, error, startScreenShare, stopScreenShare } = useLiveStream()
+  const { stream, isStreaming, error, startScreenShare, stopScreenShare } = useLiveStream('slide10')
 
   useEffect(() => {
     if (streamVideoRef.current && stream) {
@@ -121,9 +121,6 @@ export default function Slide10Dashboard() {
         {/* Left column — Content */}
         <div className="flex flex-col gap-6">
           <motion.div variants={itemVariants}>
-            <p className="font-inter text-gold-500 text-xs tracking-[0.25em] uppercase mb-3 font-medium">
-              10 — Herramienta
-            </p>
             <h2 className="font-jakarta font-black text-white leading-tight" style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}>
               Panel del Aliado Miip
             </h2>
@@ -131,11 +128,11 @@ export default function Slide10Dashboard() {
           </motion.div>
 
           <motion.div variants={itemVariants}>
-            <p className="font-jakarta font-semibold text-white/80 text-xl leading-snug">
+            <p className="font-jakarta font-semibold text-white/80 text-2xl leading-snug">
               Control total de tu menú y{' '}
               <span className="gradient-gold-text">métricas en tiempo real.</span>
             </p>
-            <p className="font-inter text-white/40 text-sm mt-2 leading-relaxed">
+            <p className="font-inter text-white/40 text-m mt-2 leading-relaxed">
               Toma las riendas de tu negocio operativo digital desde un único centro de comando web o tablet.
             </p>
           </motion.div>
@@ -151,7 +148,7 @@ export default function Slide10Dashboard() {
                     style={{ color: '#C9A84C' }}
                     strokeWidth={1.5}
                   />
-                  <p className="font-inter text-white/55 text-sm leading-relaxed">{f.text}</p>
+                  <p className="font-inter text-white/100 text-m leading-relaxed">{f.text}</p>
                 </div>
               )
             })}

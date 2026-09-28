@@ -46,9 +46,6 @@ export default function Slide02Problem() {
       >
         {/* Header */}
         <motion.div variants={itemVariants}>
-          <p className="font-inter text-gold-500 text-xs tracking-[0.25em] uppercase mb-3 font-medium">
-            02 — Diagnóstico
-          </p>
           <h2 className="font-jakarta font-black text-white leading-tight" style={{ fontSize: 'clamp(2.2rem, 5vw, 4rem)' }}>
             El Diagnóstico Actual
           </h2>
@@ -82,10 +79,10 @@ export default function Slide02Problem() {
                   <Icon size={20} style={{ color: card.iconColor }} strokeWidth={1.5} />
                 </div>
 
-                <h3 className="font-jakarta font-bold text-white text-xl mb-3 leading-snug">
+                <h3 className="font-jakarta font-bold text-white text-2xl mb-3 leading-snug">
                   {card.label}
                 </h3>
-                <p className="font-inter text-white/45 text-sm leading-relaxed">
+                <p className="font-inter text-white/45 text-m leading-relaxed">
                   {card.text}
                 </p>
               </motion.div>

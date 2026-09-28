@@ -33,9 +33,6 @@ export default function Slide14CTA() {
         {/* Left column — Logo grande */}
         <div className="flex flex-col justify-center gap-6">
           <motion.div variants={itemVariants}>
-            <p className="font-inter text-gold-500 text-xs tracking-[0.25em] uppercase mb-6 font-medium">
-              14 — Cierre
-            </p>
 
             {/* Logo con glow */}
             <div

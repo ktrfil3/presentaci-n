@@ -2,7 +2,6 @@ import { useState, useEffect, useCallback } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import MiipLogo from './MiipLogo'
-import SoundToggle from './SoundToggle'
 
 import Slide00Blank from './slides/Slide00Blank'
 import Slide01Hero from './slides/Slide01Hero'
@@ -122,13 +121,6 @@ export default function App() {
         />
       </div>
 
-      {/* Top-right controls */}
-      <div className={`absolute top-4 right-6 z-50 flex items-center gap-6 transition-opacity duration-700 ${current === 0 ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
-        <SoundToggle />
-        <div className="font-inter text-xs tracking-widest text-white/30 font-medium">
-          {String(current).padStart(2, '0')} / {String(TOTAL - 1).padStart(2, '0')}
-        </div>
-      </div>
 
       {/* MiiP logo top-left */}
       {current !== 0 && current !== 4 && current !== 11 && (

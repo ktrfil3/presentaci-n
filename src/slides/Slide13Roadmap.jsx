@@ -79,9 +79,6 @@ export default function Slide13Roadmap() {
       >
         {/* ── Header ── */}
         <motion.div variants={itemVariants}>
-          <p className="font-inter text-gold-500 text-xs tracking-[0.25em] uppercase mb-3 font-medium">
-            13 — Roadmap
-          </p>
           <h2
             className="font-jakarta font-black text-white leading-tight"
             style={{ fontSize: 'clamp(2rem, 4.5vw, 3.8rem)' }}
@@ -177,10 +174,10 @@ export default function Slide13Roadmap() {
                   >
                     {node.phase}
                   </span>
-                  <h3 className="font-jakarta font-bold text-white text-lg mb-1.5 leading-snug">
+                  <h3 className="font-jakarta font-bold text-white text-xl mb-1.5 leading-snug">
                     {node.label}
                   </h3>
-                  <p className="font-inter text-white/38 text-sm leading-relaxed">
+                  <p className="font-inter text-white/38 text-m leading-relaxed">
                     {node.text}
                   </p>
                 </div>

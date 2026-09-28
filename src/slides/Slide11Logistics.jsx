@@ -216,9 +216,6 @@ export default function Slide11Logistics() {
         {/* Right — Content from Slide13 */}
         <div className="flex flex-col gap-6">
           <motion.div variants={itemVariants}>
-            <p className="font-inter text-gold-500 text-xs tracking-[0.25em] uppercase mb-3 font-medium">
-              11 — Logística
-            </p>
             <h2 className="font-jakarta font-black text-white leading-tight" style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}>
               Red Miiper |{' '}
               <span className="gradient-gold-text">Deliverys</span>

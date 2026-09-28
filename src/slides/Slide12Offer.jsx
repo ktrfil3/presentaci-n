@@ -52,9 +52,6 @@ export default function Slide12Offer() {
       >
         {/* Header */}
         <motion.div variants={itemVariants}>
-          <p className="font-inter text-gold-500 text-xs tracking-[0.25em] uppercase mb-3 font-medium">
-            12 — Oferta
-          </p>
           <h2 className="font-jakarta font-black text-white leading-tight" style={{ fontSize: 'clamp(2rem, 4.5vw, 3.8rem)' }}>
             Programa Aliados Fundadores
           </h2>
@@ -107,7 +104,7 @@ export default function Slide12Offer() {
 
                 <div>
                   <h3 className="font-jakarta font-bold text-white text-xl mb-2">{o.label}</h3>
-                  <p className="font-inter text-white/45 text-sm leading-relaxed">{o.text}</p>
+                  <p className="font-inter text-white/45 text-m leading-relaxed">{o.text}</p>
                 </div>
 
                 {/* Bottom accent */}

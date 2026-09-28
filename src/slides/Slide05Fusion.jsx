@@ -64,9 +64,6 @@ export default function Slide05Fusion() {
         transition={{ duration: 1.2, delay: 2.8, ease: [0.25, 0.1, 0.25, 1] }}
         className="relative z-30 mt-80 text-center flex flex-col items-center"
       >
-        <p className="font-inter text-gold-500 text-sm tracking-[0.25em] uppercase mb-6 font-medium">
-          05 — Fusión
-        </p>
         <h2 className="font-jakarta font-bold text-4xl md:text-5xl lg:text-6xl text-white tracking-tight leading-tight">
           No son tres herramientas separadas...
         </h2>

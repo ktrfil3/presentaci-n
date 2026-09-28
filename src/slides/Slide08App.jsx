@@ -100,7 +100,7 @@ function IPhoneFrame({ children, maskId, gradientId, dynamicIsland = false }) {
 // ── Slide 06 ────────────────────────────────────────────────────────────────
 export default function Slide08App() {
   const streamVideoRef = useRef(null)
-  const { stream, isStreaming, error, startScreenShare, stopScreenShare } = useLiveStream()
+  const { stream, isStreaming, error, startScreenShare, stopScreenShare } = useLiveStream('slide08')
 
   useEffect(() => {
     if (streamVideoRef.current && stream) {
@@ -120,9 +120,6 @@ export default function Slide08App() {
         {/* ── Columna izquierda — contenido ── */}
         <div className="flex flex-col gap-6">
           <motion.div variants={itemVariants}>
-            <p className="font-inter text-gold-500 text-xs tracking-[0.25em] uppercase mb-3 font-medium">
-              08 — Producto
-            </p>
             <h2
               className="font-jakarta font-black text-white leading-tight"
               style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}

@@ -47,13 +47,7 @@ export default function Slide04Products() {
         animate="show"
         className="relative z-10 w-full max-w-6xl px-8"
       >
-        <motion.p
-          variants={cardVariants}
-          className="text-center font-inter text-gold-500 text-sm tracking-[0.25em] uppercase mb-20 font-medium"
-        >
-          04 — Productos
-        </motion.p>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {products.map((p, i) => (
             <motion.div

@@ -49,9 +49,6 @@ export default function Slide07Value() {
       >
         {/* Header */}
         <motion.div variants={itemVariants}>
-          <p className="font-inter text-gold-500 text-xs tracking-[0.25em] uppercase mb-3 font-medium">
-            07 — Propuesta
-          </p>
           <h2 className="font-jakarta font-black text-white leading-tight" style={{ fontSize: 'clamp(2rem, 4.5vw, 3.8rem)' }}>
             Nuestros Pilares
           </h2>
@@ -100,11 +97,11 @@ export default function Slide07Value() {
                       {p.num}
                     </span>
                     <div className="h-px flex-1 max-w-6" style={{ background: `${p.iconColor}30` }} />
-                    <h3 className="font-jakarta font-bold text-white text-base md:text-lg tracking-wide">
+                    <h3 className="font-jakarta font-bold text-white text-base md:text-2xl tracking-wide">
                       {p.label}
                     </h3>
                   </div>
-                  <p className="font-inter text-white/45 text-sm leading-relaxed">
+                  <p className="font-inter text-white/45 text-m leading-relaxed">
                     {p.text}
                   </p>
                 </div>
