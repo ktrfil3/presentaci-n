@@ -90,120 +90,21 @@ export default function Slide11Logistics() {
                     </div>
                   </div>
 
-                  {/* Simulated Map Background */}
-                  <motion.div variants={mapVariants} className="absolute inset-0 z-0">
-                    {/* Dark map gradient */}
-                    <div className="absolute inset-0 bg-gradient-to-b from-[#111] via-[#1a1a1a] to-[#111]" />
-                    
-                    {/* Grid */}
-                    <div
-                      className="absolute inset-0 opacity-[0.05]"
-                      style={{
-                        backgroundImage: `linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)`,
-                        backgroundSize: '30px 30px',
-                      }}
+                  {/* Video Background */}
+                  <motion.div variants={mapVariants} className="absolute inset-0 z-0 bg-black">
+                    <video
+                      src="/0930.mp4"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="absolute inset-0 w-full h-full object-cover opacity-90"
                     />
-
-                    {/* Animated Route path */}
-                    <svg className="absolute inset-0 w-full h-full drop-shadow-[0_0_8px_rgba(201,168,76,0.5)]" preserveAspectRatio="none" viewBox="0 0 100 100">
-                      <motion.path 
-                        variants={pathVariants}
-                        d="M 25 75 Q 45 55 40 35 T 75 25" 
-                        fill="none" 
-                        stroke="#C9A84C" 
-                        strokeWidth="1.5" 
-                        strokeDasharray="4 4" 
-                        strokeLinecap="round"
-                      />
-                    </svg>
-
-                    {/* Nodes */}
-                    <motion.div 
-                      initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 1.5, type: 'spring' }}
-                      className="absolute top-[23%] left-[73%] w-5 h-5 rounded-full bg-gold-500 border-[3px] border-black flex items-center justify-center shadow-[0_0_20px_rgba(201,168,76,0.6)] z-10" 
-                    />
-                    <motion.div 
-                      initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 1.8, type: 'spring' }}
-                      className="absolute top-[33%] left-[38%] w-3 h-3 rounded-full bg-white border-[2px] border-black z-10" 
-                    />
-                    <motion.div 
-                      initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 1.2, type: 'spring' }}
-                      className="absolute top-[73%] left-[23%] w-5 h-5 rounded-full bg-emerald-500 border-[3px] border-black z-10 shadow-[0_0_15px_rgba(16,185,129,0.4)]" 
-                    >
-                      <div className="w-1.5 h-1.5 bg-black rounded-full" />
-                    </motion.div>
-                    
-                    {/* Radar Pulse on active driver */}
-                    <motion.div
-                      animate={{ scale: [1, 2.5], opacity: [0.5, 0] }}
-                      transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
-                      className="absolute top-[73%] left-[23%] w-5 h-5 rounded-full bg-emerald-500/50 z-0"
-                    />
+                    {/* Subtle dark gradient overlay to make UI on top readable */}
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/90 pointer-events-none" />
                   </motion.div>
 
-                  {/* Top Overlay */}
-                  <div className="relative z-20 w-full pt-12 pb-6 px-5 bg-gradient-to-b from-black/90 via-black/50 to-transparent">
-                    <motion.div 
-                      initial={{ y: -20, opacity: 0 }}
-                      animate={{ y: 0, opacity: 1 }}
-                      transition={{ delay: 1, duration: 0.8 }}
-                      className="flex items-center justify-between"
-                    >
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/5 shadow-inner">
-                          <ShieldCheck size={18} className="text-emerald-400" />
-                        </div>
-                        <div>
-                          <div className="text-white/50 text-[10px] font-medium uppercase tracking-wider">Estado</div>
-                          <div className="text-white font-semibold text-sm flex items-center gap-1">
-                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" /> En Ruta
-                          </div>
-                        </div>
-                      </div>
-                      <div className="text-right">
-                        <div className="text-white/50 text-[10px] font-medium uppercase tracking-wider">Ganancia</div>
-                        <div className="text-gold-400 font-bold text-lg leading-none mt-1">$45.00</div>
-                      </div>
-                    </motion.div>
-                  </div>
 
-                  {/* Bottom Interactive Card */}
-                  <div className="relative z-20 mt-auto p-4 w-full">
-                    <motion.div 
-                      initial={{ y: 50, opacity: 0 }}
-                      animate={{ y: 0, opacity: 1 }}
-                      transition={{ delay: 1.2, duration: 0.8, type: 'spring', bounce: 0.3 }}
-                      className="w-full bg-zinc-900/80 backdrop-blur-2xl rounded-2xl border border-white/10 p-4 shadow-[0_10px_40px_rgba(0,0,0,0.8)] overflow-hidden relative"
-                    >
-                      {/* Glass glare */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] to-transparent pointer-events-none" />
-                      
-                      <div className="flex justify-between items-start mb-3">
-                        <div>
-                          <span className="text-white font-bold text-sm block">Múltiple (2 pedidos)</span>
-                          <span className="text-white/50 text-[10px] mt-0.5 block">McDonald's & KFC</span>
-                        </div>
-                        <span className="text-gold-400 font-black text-sm bg-gold-500/10 px-2 py-1 rounded-md">$6.50</span>
-                      </div>
-                      
-                      <div className="flex items-center justify-between mb-4">
-                        <div className="flex items-center gap-1.5 text-white/70 text-[11px] font-medium">
-                          <Navigation size={12} className="text-gold-500" /> 1.2 km rest.
-                        </div>
-                        <div className="flex items-center gap-1.5 text-white/70 text-[11px] font-medium">
-                          <MapPin size={12} className="text-white/40" /> ~12 min
-                        </div>
-                      </div>
-
-                      <motion.button 
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                        className="w-full h-11 rounded-xl bg-gradient-to-r from-gold-600 to-gold-400 text-black font-bold text-sm shadow-[0_0_15px_rgba(201,168,76,0.3)] flex items-center justify-center gap-2"
-                      >
-                        Aceptar Ruta
-                      </motion.button>
-                    </motion.div>
-                  </div>
 
                   {/* Home Indicator */}
                   <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-1/3 h-1 bg-white/30 rounded-full z-50" />
