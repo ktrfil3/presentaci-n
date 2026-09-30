@@ -1,5 +1,7 @@
+import { useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Route, MapPin, Heart, Zap, ShieldCheck, Navigation } from 'lucide-react'
+import { useLiveStream } from '../LiveStreamContext'
 
 const containerVariants = {
   hidden: {},
@@ -37,7 +39,95 @@ const features = [
   { icon: Zap, title: 'Cobro Instantáneo', desc: 'Liquidación automática por orden entregada.' },
 ]
 
+// ── iPhone mockup SVG frame (reutilizable) ──────────────────────────────────
+function IPhoneFrame({ children, maskId, gradientId, dynamicIsland = false }) {
+  return (
+    <div
+      style={{
+        position: 'relative',
+        width: '260px',
+        height: '520px',
+        overflow: 'hidden',
+        borderRadius: '44px',
+        boxShadow: '0 0 60px rgba(201,168,76,0.18)',
+      }}
+    >
+      {/* Pantalla — coordenadas exactas del cutout SVG */}
+      <div
+        style={{
+          position: 'absolute',
+          top: '4px',
+          left: '4px',
+          width: '252px',
+          height: '512px',
+          borderRadius: '40px',
+          overflow: 'hidden',
+          background: '#000',
+          zIndex: 1,
+        }}
+      >
+        {children}
+      </div>
+
+      {/* Bisel SVG */}
+      <svg
+        viewBox="0 0 260 520"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        style={{
+          position: 'absolute',
+          inset: 0,
+          width: '100%',
+          height: '100%',
+          zIndex: 10,
+          pointerEvents: 'none',
+        }}
+      >
+        <defs>
+          <mask id={maskId}>
+            <rect x="0" y="0" width="260" height="520" fill="white" />
+            <rect x="4" y="4" width="252" height="512" rx="40" fill="black" />
+          </mask>
+          <linearGradient id={gradientId} x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stopColor="white" stopOpacity="0.12" />
+            <stop offset="60%" stopColor="white" stopOpacity="0" />
+          </linearGradient>
+        </defs>
+        <rect x="0" y="0" width="260" height="520" rx="44"
+          fill="rgba(28,26,32,0.95)" mask={`url(#${maskId})`} />
+        <rect x="0.5" y="0.5" width="259" height="519" rx="43.5"
+          stroke="rgba(255,255,255,0.22)" strokeWidth="1" fill="none" />
+        <rect x="4" y="4" width="252" height="512" rx="40"
+          stroke="rgba(255,255,255,0.06)" strokeWidth="1" fill="none" />
+        <rect x="0" y="0" width="260" height="520" rx="44"
+          fill={`url(#${gradientId})`} mask={`url(#${maskId})`} />
+        {/* Dynamic Island — opcional */}
+        {dynamicIsland && (
+          <rect x="96" y="14" width="68" height="20" rx="10" fill="rgba(0,0,0,0.98)" />
+        )}
+        {/* Power */}
+        <rect x="259" y="130" width="3" height="60" rx="1.5" fill="rgba(255,255,255,0.15)" />
+        {/* Volumen */}
+        <rect x="-2" y="118" width="3" height="38" rx="1.5" fill="rgba(255,255,255,0.1)" />
+        <rect x="-2" y="166" width="3" height="38" rx="1.5" fill="rgba(255,255,255,0.1)" />
+        {/* Mute */}
+        <rect x="-2" y="90" width="3" height="22" rx="1.5" fill="rgba(255,255,255,0.08)" />
+      </svg>
+    </div>
+  )
+}
+
 export default function Slide11Logistics() {
+  const streamVideoRef = useRef(null)
+  const { stream, isStreaming, error, startScreenShare, stopScreenShare } = useLiveStream('slide11')
+
+  useEffect(() => {
+    if (streamVideoRef.current && stream) {
+      streamVideoRef.current.srcObject = stream
+      streamVideoRef.current.play().catch(err => console.error("Auto-play prevented", err))
+    }
+  }, [stream])
+
   return (
     <div className="w-full h-full flex flex-col justify-center px-12 py-16 max-w-7xl mx-auto">
       <motion.div
@@ -48,69 +138,86 @@ export default function Slide11Logistics() {
       >
         {/* Left — iPhone 17 Pro Max Mockup */}
         <motion.div variants={mockupVariants} className="flex items-center justify-center relative">
-          
-          {/* Background Glow */}
-          <div className="absolute inset-0 bg-gold-500/10 blur-[80px] rounded-full scale-75" />
+          <div className="flex flex-col items-center gap-5">
+            {/* Background Glow */}
+            <div className="absolute inset-0 bg-gold-500/10 blur-[80px] rounded-full scale-75" />
 
-          <div className="relative" style={{ width: 300, height: 615 }}>
-            {/* Hardware Buttons */}
-            {/* Action Button */}
-            <div className="absolute left-[-3px] top-[110px] w-[3px] h-[22px] bg-gradient-to-r from-zinc-700 to-zinc-400 rounded-l-md shadow-sm" />
-            {/* Volume Up */}
-            <div className="absolute left-[-3px] top-[150px] w-[3px] h-[45px] bg-gradient-to-r from-zinc-700 to-zinc-400 rounded-l-md shadow-sm" />
-            {/* Volume Down */}
-            <div className="absolute left-[-3px] top-[210px] w-[3px] h-[45px] bg-gradient-to-r from-zinc-700 to-zinc-400 rounded-l-md shadow-sm" />
-            {/* Power Button */}
-            <div className="absolute right-[-3px] top-[170px] w-[3px] h-[65px] bg-gradient-to-l from-zinc-700 to-zinc-400 rounded-r-md shadow-sm" />
-
-            {/* Titanium Frame */}
-            <div className="absolute inset-0 rounded-[3.25rem] bg-gradient-to-br from-zinc-300 via-zinc-600 to-zinc-300 p-[2px] shadow-[inset_0_0_4px_rgba(255,255,255,0.5),0_25px_50px_-12px_rgba(0,0,0,0.8)]">
-              {/* Inner Bezel */}
-              <div className="absolute inset-[2px] rounded-[3.1rem] bg-black p-[5px]">
-                {/* Screen */}
-                <div className="relative w-full h-full rounded-[2.85rem] bg-[#111] overflow-hidden flex flex-col">
-                  
-                  {/* Dynamic Island */}
-                  <motion.div 
-                    initial={{ width: 100 }}
-                    animate={{ width: 110 }}
-                    transition={{ duration: 2, repeat: Infinity, repeatType: 'reverse', ease: "easeInOut" }}
-                    className="absolute top-2 left-1/2 -translate-x-1/2 h-7 bg-black rounded-full z-40 flex items-center justify-between px-2 shadow-[0_0_10px_rgba(0,0,0,0.5)]"
-                  >
-                    <div className="w-2 h-2 rounded-full bg-emerald-500/80 animate-pulse" />
-                    <div className="w-2 h-2 rounded-full bg-indigo-500/50" />
-                  </motion.div>
-
-                  {/* Status Bar */}
-                  <div className="absolute top-3 w-full px-7 flex justify-between items-center z-30 text-[10px] font-medium text-white/90">
-                    <span>9:41</span>
-                    <div className="flex items-center gap-1.5">
-                      <div className="w-3 h-3 rounded-full border border-white/50" />
-                      <div className="w-4 h-2.5 bg-white rounded-sm" />
-                    </div>
-                  </div>
-
-                  {/* Video Background */}
-                  <motion.div variants={mapVariants} className="absolute inset-0 z-0 bg-black">
-                    <video
-                      src="/0930.mp4"
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                      className="absolute inset-0 w-full h-full object-cover opacity-90"
-                    />
-                    {/* Subtle dark gradient overlay to make UI on top readable */}
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/90 pointer-events-none" />
-                  </motion.div>
-
-
-
-                  {/* Home Indicator */}
-                  <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-1/3 h-1 bg-white/30 rounded-full z-50" />
-                </div>
-              </div>
+            <div style={{ position: 'relative', height: '520px', width: '260px' }}>
+              <IPhoneFrame maskId="mask11vid" gradientId="grad11vid" dynamicIsland>
+                {!isStreaming && (
+                  <video
+                    src="/0930.mp4"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    style={{
+                      position: 'absolute',
+                      top: '-0.1%',
+                      left: 0,
+                      width: '100%',
+                      height: '103%',
+                      objectFit: 'cover',
+                    }}
+                  />
+                )}
+                
+                <video
+                  ref={streamVideoRef}
+                  autoPlay
+                  playsInline
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    width: '100%',
+                    height: '105%',
+                    top: '-2.4%',
+                    objectFit: 'cover',
+                    display: isStreaming ? 'block' : 'none',
+                  }}
+                />
+              </IPhoneFrame>
             </div>
+            
+            {/* Botones de conexión */}
+            {!isStreaming ? (
+              <motion.button
+                onClick={startScreenShare}
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.96 }}
+                className="font-inter font-semibold text-sm px-6 py-3 rounded-xl transition-all duration-200"
+                style={{
+                  background: 'linear-gradient(135deg, #C9A84C, #F5D98B)',
+                  color: '#1a1208',
+                  boxShadow: '0 0 24px rgba(201,168,76,0.35)',
+                }}
+              >
+                Conectar iPhone
+              </motion.button>
+            ) : (
+              <motion.button
+                onClick={() => {
+                  stopScreenShare()
+                  if (streamVideoRef.current) streamVideoRef.current.srcObject = null
+                }}
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.96 }}
+                className="font-inter font-semibold text-sm px-6 py-3 rounded-xl transition-all duration-200"
+                style={{
+                  background: 'rgba(255,255,255,0.07)',
+                  color: 'rgba(255,255,255,0.5)',
+                  border: '1px solid rgba(255,255,255,0.1)',
+                }}
+              >
+                Detener captura
+              </motion.button>
+            )}
+
+            {error && (
+              <p className="font-inter text-xs" style={{ color: 'rgba(255,100,100,0.7)' }}>
+                {error}
+              </p>
+            )}
           </div>
         </motion.div>
 
