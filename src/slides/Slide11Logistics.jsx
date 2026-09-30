@@ -154,8 +154,8 @@ export default function Slide11Logistics() {
                     style={{
                       position: 'absolute',
                       top: '-0.1%',
-                      left: 0,
-                      width: '100%',
+                      left: '0.9%',
+                      width: '99.5%',
                       height: '103%',
                       objectFit: 'cover',
                     }}
